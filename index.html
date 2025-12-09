@@ -9,6 +9,17 @@
     content="Website development packages by software developer Omoyeni Ogunleye – from basic websites to full admin dashboards and e-commerce."
   />
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-00D9Z3K6L5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-00D9Z3K6L5');
+  </script>
+
 </head>
 <body>
   <header class="site-header">
@@ -17,19 +28,36 @@
         <div class="brand-name">Omoyeni Ogunleye</div>
         <div class="brand-tagline">Software Developer</div>
       </div>
-      <nav class="nav">
+
+      <!-- DESKTOP NAV -->
+      <nav class="nav desktop-nav">
         <a href="#pricing">Packages</a>
         <a href="#process">Process</a>
         <a href="#notes">Details</a>
         <a href="#maintenance">Maintenance</a>
         <a href="#addons">Add-Ons</a>
         <a href="#refunds">Refunds</a>
-        <a href="#warranty">Warranty</a>
-        <a href="#client-responsibilities">Responsibilities</a>
         <a href="#faq">FAQ</a>
         <a href="#acceptance">Proceed</a>
       </nav>
+
+      <!-- MOBILE BUTTON -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        ☰
+      </button>
     </div>
+
+    <!-- MOBILE MENU -->
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="#pricing">Packages</a>
+      <a href="#process">Process</a>
+      <a href="#notes">Details</a>
+      <a href="#maintenance">Maintenance</a>
+      <a href="#addons">Add-Ons</a>
+      <a href="#refunds">Refunds</a>
+      <a href="#faq">FAQ</a>
+      <a href="#acceptance">Proceed</a>
+    </nav>
   </header>
 
   <main>
@@ -45,7 +73,7 @@
           </p>
           <div class="hero-actions">
             <a href="#pricing" class="btn primary">View Packages</a>
-            <a href="#contact" class="btn outline">Talk to Me</a>
+            <a href="#acceptance" class="btn outline">Talk to Me</a>
           </div>
         </div>
         <div class="hero-card">
@@ -608,7 +636,7 @@
           timelines, policies, and responsibilities listed on this website.
         </p>
 
-        <div class="card">
+        <div class="card accept-card">
           <p class="note">
             <a href="Omoyeni_Ogunleye_Web_Development_Agreement_Revised.pdf" target="_blank">
               View Full Service Agreement (PDF)
@@ -620,7 +648,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="section section-alt" style="display:none;">
+    <section id="contact" class="section section-alt hidden">
       <div class="container contact-grid">
         <div>
           <h2 class="section-title">Ready to Start?</h2>
@@ -631,13 +659,19 @@
 
           <div class="contact-options">
             <a href="https://wa.me/2348075114643" target="_blank" class="btn primary full">Contact via WhatsApp</a>
-            <a href="mailto:omoyenney@gmail.com" target="_blank" class="btn outline full">Send an Email</a>
+            <button class="btn outline full" id="revealEmailBtn">Send an Email</button>
           </div>
 
-          <p class="fine-print">
+
+          <div class="fine-print-container">
+            <p class="fine-print">
             When you reach out, please include: your name, business name, preferred package, and any
             deadlines you’re working with.
-          </p>
+            </p>
+            <p id="emailReveal" class="fine-print" style="display:none; margin-top:8px;">
+              📧 omoyenney@gmail.com
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -651,50 +685,10 @@
     </div>
   </footer>
 
-  <script>
-    // Set current year in footer
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
-  <script>
-    const acceptBtn = document.getElementById("acceptBtn");
-    const contactSection = document.getElementById("contact");
-
-    if (acceptBtn && contactSection) {
-      acceptBtn.addEventListener("click", function () {
-        contactSection.style.display = "block";
-        contactSection.scrollIntoView({ behavior: "smooth" });
-      });
-    }
-
-    // Smooth scrolling for all nav links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute("href")).scrollIntoView({
-          behavior: "smooth"
-        });
-      });
-    });
-  </script>
+  <button id="scrollTopBtn" title="Go to top">↑</button>
 
   <a href="#acceptance" class="mobile-contact-btn">Start a Project</a>
 
-  <style>
-  .mobile-contact-btn {
-    position: fixed;
-    bottom: 16px;
-    right: 16px;
-    background: linear-gradient(135deg, #0ea5e9, #22c55e);
-    color: #000;
-    padding: 12px 18px;
-    border-radius: 999px;
-    text-decoration: none;
-    font-size: 14px;
-    z-index: 9999;
-    box-shadow: 0 12px 24px rgba(0,0,0,0.4);
-  }
-  </style>
-
+  <script src="main.js"></script>
 </body>
 </html>
