@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yeni Dev · Internal Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --primary: #38bdf8;
+      --accent: #22c55e;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .panel {
+      width: 100%;
+      max-width: 460px;
+      background: linear-gradient(180deg, #020617, var(--card));
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      text-align: center;
+      max-height: 92vh;
+      overflow-y: auto;
+    }
+
+    .brand {
+      margin-bottom: 20px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(20px, 4vw, 26px);
+      letter-spacing: 1px;
+    }
+
+    .brand p {
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .tools {
+      margin-top: 24px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .tool-btn {
+      width: 100%;
+      text-decoration: none;
+      padding: 14px 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #020617;
+    }
+
+    .secondary {
+      background: #020617;
+      color: var(--text);
+      border: 1px solid #334155;
+    }
+
+    .tool-btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.9;
+    }
+
+    .note {
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* -----------------------------
+      FORM STYLES
+    ----------------------------- */
+
+    .tool-box {
+      background: #020617;
+      padding: 18px;
+      border-radius: 14px;
+    }
+
+    .tool-box h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .tool-box input {
+      width: 100%;
+      padding: 11px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #020617;
+      color: var(--text);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .tool-box input::placeholder {
+      color: #64748b;
+    }
+
+    .tool-box input:focus {
+      border-color: var(--primary);
+    }
+
+    ul#clientList {
+      padding-left: 16px;
+      font-size: 14px;
+    }
+
+    ul#clientList li {
+      margin-bottom: 6px;
+    }
+
+    /* -----------------------------
+      MOBILE OPTIMIZATION
+    ----------------------------- */
+
+    @media (max-width: 480px) {
+      body {
+        padding: 12px;
+      }
+
+      .panel {
+        padding: 18px;
+        border-radius: 14px;
+      }
+
+      .tool-btn {
+        font-size: 14px;
+        padding: 12px;
+      }
+
+      .tool-box {
+        padding: 14px;
+      }
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- SIMPLE PASSWORD LOCK -->
+  <script>
+    const pass = prompt("Enter Yeni Dev admin password");
+    if (pass !== "yeni123") {
+      alert("Access denied");
+      window.location.href = "/";
+    }
+  </script>
+
+  <div class="panel">
+
+    <div class="brand">
+      <h1>YENI DEV</h1>
+      <p>Software Developer & Systems Builder</p>
+    </div>
+
+    <div class="tools">
+
+      <!-- AUTO INVOICE NUMBER -->
+      <div class="tool-btn secondary" id="invoiceGen" style="cursor:pointer;">
+        🔢 Generate New Invoice Number
+      </div>
+
+      <div id="invoiceOutput" style="margin-top:-6px;font-size:14px;color:#22c55e;"></div>
+
+      <!-- OPEN DOCUMENTS -->
+      <a class="tool-btn primary" href="docs/invoice_dark.pdf" target="_blank">
+        📄 Open Invoice Template
+      </a>
+
+      <a class="tool-btn primary" href="docs/service_agreement.pdf" target="_blank">
+        📌 Open Service Agreement
+      </a>
+
+      <!-- CLIENT INTAKE FORM -->
+      <a class="tool-btn secondary" href="#client-form">
+        📝 New Client Intake
+      </a>
+
+      <a class="tool-btn secondary" href="index.html">
+        ⬅ Back to Website
+      </a>
+
+    </div>
+
+    <!-- CLIENT INTAKE FORM -->
+    <div id="client-form" class="tool-box" style="margin-top:30px;">
+
+      <h3 style="margin-bottom:14px;">New Client Intake</h3>
+
+      <input type="text" id="clientName" placeholder="Client Name" style="width:100%;padding:10px;margin-bottom:10px;">
+      <input type="text" id="clientBusiness" placeholder="Business Name" style="width:100%;padding:10px;margin-bottom:10px;">
+      <input type="text" id="clientProject" placeholder="Project Type" style="width:100%;padding:10px;margin-bottom:10px;">
+      <input type="text" id="clientAmount" placeholder="Quoted Amount (N)" style="width:100%;padding:10px;margin-bottom:10px;">
+
+      <button class="tool-btn primary" onclick="saveClient()">Save Client</button>
+
+    </div>
+
+    <!-- CLIENT LIST -->
+    <div class="tool-box" style="margin-top:20px;">
+      <h3>Saved Clients</h3>
+      <ul id="clientList" style="padding-left:18px;"></ul>
+    </div>
+
+    <p class="note">
+      This admin page is private and unlisted.<br>
+      Do not share this link with clients.
+    </p>
+
+  </div>
+
+  <script>
+    // -------------------------
+    // AUTO INVOICE NUMBER GEN
+    // -------------------------
+    const invoiceBtn = document.getElementById("invoiceGen");
+    const invoiceOutput = document.getElementById("invoiceOutput");
+
+    let invoiceCount = localStorage.getItem("invoiceCount") || 0;
+
+    invoiceBtn.addEventListener("click", () => {
+      invoiceCount++;
+      localStorage.setItem("invoiceCount", invoiceCount);
+
+      const invoiceNo = "YD-" + String(invoiceCount).padStart(4, "0");
+      invoiceOutput.innerText = "New Invoice Number: " + invoiceNo;
+    });
+
+    // -------------------------
+    // CLIENT INTAKE SAVE
+    // -------------------------
+    function saveClient() {
+      const name = document.getElementById("clientName").value;
+      const business = document.getElementById("clientBusiness").value;
+      const project = document.getElementById("clientProject").value;
+      const amount = document.getElementById("clientAmount").value;
+
+      if (!name || !project || !amount) {
+        alert("Please fill at least Name, Project & Amount");
+        return;
+      }
+
+      const clientData = {
+        name,
+        business,
+        project,
+        amount,
+        date: new Date().toLocaleDateString()
+      };
+
+      let clients = JSON.parse(localStorage.getItem("yeniClients")) || [];
+      clients.push(clientData);
+      localStorage.setItem("yeniClients", JSON.stringify(clients));
+
+      alert("Client saved successfully ✅");
+      loadClients();
+    }
+
+    // -------------------------
+    // LOAD SAVED CLIENTS
+    // -------------------------
+    function loadClients() {
+      const clientList = document.getElementById("clientList");
+      clientList.innerHTML = "";
+
+      const clients = JSON.parse(localStorage.getItem("yeniClients")) || [];
+
+      clients.forEach((client, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <strong>${client.name}</strong> – ${client.project} – N${client.amount}
+          <span style="color:#94a3b8;">(${client.date})</span>
+        `;
+        clientList.appendChild(li);
+      });
+    }
+
+    loadClients();
+  </script>
+
+</body>
+</html>
