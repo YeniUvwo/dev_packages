@@ -82,3 +82,32 @@ if (revealEmailBtn && emailReveal) {
     emailReveal.style.display = "block";
   });
 }
+
+// -----------------------------
+// 7. PACKAGE EXPAND / COLLAPSE
+// -----------------------------
+const expandButtons = document.querySelectorAll(".expand-btn");
+
+expandButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const content = btn.nextElementSibling;
+
+    if (!content) return;
+
+    const isOpen = !content.classList.contains("hidden");
+
+    // Close all others (accordion effect)
+    document.querySelectorAll(".expand-content").forEach(el => {
+      el.classList.add("hidden");
+    });
+
+    document.querySelectorAll(".expand-btn").forEach(b => {
+      b.textContent = "View Details";
+    });
+
+    if (!isOpen) {
+      content.classList.remove("hidden");
+      btn.textContent = "Hide Details";
+    }
+  });
+});
