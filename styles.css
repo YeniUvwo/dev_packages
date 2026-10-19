@@ -655,3 +655,21 @@ a { color: inherit; }
   .site-header nav a,
   .site-header .site-nav a { padding-inline: 9px; }
 }
+
+.header-cta,
+.sticky-cta a {
+  appearance: none;
+  -webkit-appearance: none;
+  color: #071a38;
+  background: #d8fa54;
+  border: none;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.header-cta span {
+  color: inherit;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
